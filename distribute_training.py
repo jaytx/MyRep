@@ -171,7 +171,7 @@ def main_fun(argv, ctx):
 
 
     if sys.argv.debug: print("Starting cluster and server...")
-    print("======================================================================"+str(argv.num_gpus))    
+    print("====================================================================== Num Gpus: "+str(argv.num_gpus))    
     cluster, server = TFNode.start_cluster_server(ctx, num_gpus=argv.num_gpus, rdma=False)
     if sys.argv.debug: print("Cluster and server started")
 
