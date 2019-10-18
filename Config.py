@@ -517,6 +517,7 @@ class Config(object):
 
 
     def plot_roc(self, rel_index, fig_name=None):
+        print("PLOTTING ROC")
         if self.importName != None:
             self.restore_tensorflow()
         self.init_triple_classification()
