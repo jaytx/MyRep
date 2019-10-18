@@ -469,7 +469,7 @@ if __name__ == '__main__':
         if args.test_head != 0: print("{:<20}{:<20.5f}{:<20.5f}{:<20.5f}{:<20.5f}{:<20.5f}{:<20.5f}{:<20.5f}{:<20.5f}\n".format('mean(filter):', np.divide((d['l_filter_reci_rank_constrain']+d['r_filter_reci_rank_constrain']),2), np.divide((d['l_filter_rank_constrain']+d['r_filter_rank_constrain']),2), np.divide((d['l_filter_tot_constrain']+d['r_filter_tot_constrain']),2), np.divide((d['l3_filter_tot_constrain']+d['r3_filter_tot_constrain']),2), np.divide((d['l1_filter_tot_constrain']+d['r1_filter_tot_constrain']),2), np.divide((d['l_filter_gen_err_constrain']+d['r_filter_gen_err_constrain']),2), np.divide((d['l_filter_spec_err_constrain']+d['r_filter_spec_err_constrain']),2), np.divide((d['l_filter_mis_err_constrain']+d['r_filter_mis_err_constrain']),2)))
 
         #remove checkpoint generated from threads
-        print()
+        #print()
         for index in range(0, num_workers):
             #try: os.remove(os.path.join(args.output_path,"lp_worker_"+str(index)))
             #except: print(" LOG:\tFile " + os.path.join(args.output_path,"lp_worker_"+str(index)) + " not founded")
