@@ -169,10 +169,9 @@ def main_fun(argv, ctx):
     task_index = ctx.task_index
     sys.argv = argv
 
-    print("====================================================================== Num Gpus: "+str(argv.num_gpus))    
 
     if sys.argv.debug: print("Starting cluster and server...")
-    cluster, server = TFNode.start_cluster_server(ctx, num_gpus=0, rdma=False)
+    cluster, server = TFNode.start_cluster_server(ctx, num_gpus=argv.num_gpus, rdma=False)
     if sys.argv.debug: print("Cluster and server started")
 
 
@@ -366,9 +365,13 @@ def main_fun(argv, ctx):
 
             #gives time to chief to stop
             if task_index != 0:
-                time.sleep(15)
+                time.sleep(30)
 
         else:
+            #gives time to other workers to connect
+            if task_index == 0:
+                time.sleep(30)
+
             d = {
                 'r_tot' : 0.0, 'r_filter_tot' : 0.0, 'r_tot_constrain' : 0.0, 'r_filter_tot_constrain' : 0.0,
                 'r1_tot' : 0.0, 'r1_filter_tot' : 0.0, 'r1_tot_constrain' : 0.0, 'r1_filter_tot_constrain' : 0.0,
@@ -604,7 +607,9 @@ def main_fun(argv, ctx):
                     f.write(str(key) + ":" + str(d[key])+'\n')
 
 
-
+            #gives time to chief to stop
+            if task_index != 0:
+                time.sleep(30)
 
 
 
