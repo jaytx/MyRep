@@ -61,4 +61,5 @@ target_rel_index = 2
 con.set_import_files(os.path.join(model_path, ckpt))
 
 con.test()
+print("PRE-PLOTTING ROC")
 if target_rel_index != None: con.plot_roc(rel_index=int(target_rel_index), fig_name=os.path.join(model_path,'plot.png'))
