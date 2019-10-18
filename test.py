@@ -57,6 +57,7 @@ elif model.lower() == "transh": con.set_model_and_session(TransH)
 elif model.lower() == "transr": con.set_model_and_session(TransR)
 else: con.set_model_and_session(TransD)
 
+print("PATH PER CARICARE")
 print(os.path.join(model_path, ckpt))
 con.set_import_files(os.path.join(model_path, ckpt))
 
