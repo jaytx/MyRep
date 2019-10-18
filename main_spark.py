@@ -471,8 +471,8 @@ if __name__ == '__main__':
         #remove checkpoint generated from threads
         print()
         for index in range(0, num_workers):
-            try: os.remove(os.path.join(args.output_path,"lp_worker_"+str(index)))
-            except: print(" LOG:\tFile " + os.path.join(args.output_path,"lp_worker_"+str(index)) + " not founded")
+            #try: os.remove(os.path.join(args.output_path,"lp_worker_"+str(index)))
+            #except: print(" LOG:\tFile " + os.path.join(args.output_path,"lp_worker_"+str(index)) + " not founded")
         print()
 
 
