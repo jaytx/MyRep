@@ -45,16 +45,30 @@ def get_ckpt(p):
     return ckpt
 
 index_rel=[]
-print("TARGET REL: ")
-print(target_rel)
-if target_rel != None:
-    with open(os.path.join(dataset_path,'relation2id.txt')) as f:
-        f.readline()
-        for line in f:
-            line_splitted=line.split("\t")
-            for rel in target_rel:
-                if(rel in (line_splitted[0])):
-                    index_rel.append([line_splitted[0],int(line_splitted[1].split("\n")[0])])
+
+rel_map={}
+with open((os.path.join(model_path,'relation2id.txt')) as f_rel:
+    f_rel.readline()
+    for line in f_rel:
+        line_splitted=line.split("\t")
+        rel_map.update({int(line_splitted[1].split("\n")[0]) : line_splitted[0]})
+                    
+    
+index_rel=[]
+with open((os.path.join(model_path,'test2id.txt')) as f:
+    f.readline()
+    for line in f:
+        index=line.split(" ")[2].strip("\n")
+        if(not int(index) in index_rel):
+            index_rel.append(int(index))
+        
+
+rel_index=[]
+for value in index_rel:
+    rel_index.append([rel_map.get(value),value])
+
+print("TARGET RELATION AND INDEX:")
+print(rel_index)
 
 ckpt = get_ckpt(model_path)
 con = Config(cpp_lib_path=cpp_path)
@@ -72,11 +86,10 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 con.test()
 
-print("INDEX_REL:")
-print(index_rel)
+
 
 if target_rel != None:
-    for relation,index in index_rel:
+    for relation,index in rel_index:
       print("Plotting ROC Curve for "+relation+"...")
       print("Index: "+str(index))
       print("Path name: "+str((os.path.join(model_path,'plot_'+str(relation)+'.png'))))
