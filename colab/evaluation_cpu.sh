@@ -7,4 +7,4 @@ echo "Target relation: $5"
 
 echo "====================================== Start evaluation for batch $i ======================================"
 	  echo "Evaluation with test"
-	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/0/1/ /content/drive/My\ Drive/DBpedia/0/1/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 $5 | tee /content/drive/My\ Drive/DBpedia/0/1/res.txt
+	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/1/0/ /content/drive/My\ Drive/DBpedia/1/0/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 $5 | tee /content/drive/My\ Drive/DBpedia/1/0/res.txt
