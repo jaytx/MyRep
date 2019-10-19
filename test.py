@@ -44,7 +44,7 @@ def get_ckpt(p):
 index_rel=[]
 
 rel_map={}
-with open((os.path.join(model_path,'relation2id.txt'))) as f_rel:
+with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
     f_rel.readline()
     for line in f_rel:
         line_splitted=line.split("\t")
@@ -52,7 +52,7 @@ with open((os.path.join(model_path,'relation2id.txt'))) as f_rel:
                     
     
 index_rel=[]
-with open((os.path.join(model_path,'test2id.txt'))) as f:
+with open((os.path.join(dataset_path,'test2id.txt'))) as f:
     f.readline()
     for line in f:
         index=line.split(" ")[2].strip("\n")
