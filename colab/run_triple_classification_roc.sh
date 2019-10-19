@@ -101,19 +101,8 @@ do
 
 	
 	echo "====================================== Start evaluation for batch $i ======================================"
-	if [ $i -eq $m ]; then
-	echo "Evaluation with main_spark"
-	  $SPARK_HOME/bin/spark-submit --master spark://$(hostname):7077 \
-    --py-files $WORK_DIR_PREFIX/distribute_training.py,$WORK_DIR_PREFIX/Config.py,$WORK_DIR_PREFIX/Model.py,$WORK_DIR_PREFIX/TransE.py,$WORK_DIR_PREFIX/Model.py,$WORK_DIR_PREFIX/TransH.py,$WORK_DIR_PREFIX/Model.py,$WORK_DIR_PREFIX/TransR.py,$WORK_DIR_PREFIX/Model.py,$WORK_DIR_PREFIX/TransD.py \
-    --driver-library-path=$LIB_CUDA --conf spark.dynamicAllocation.enabled=false --conf spark.task.cpus=$CORES_PER_WORKER --executor-memory $MEMORY_PER_WORKER --num-executors $SPARK_WORKER_INSTANCES \
-	  $WORK_DIR_PREFIX/main_spark.py \
-    --cluster_size $SPARK_WORKER_INSTANCES --num_ps 1 --num_gpus 0 --cpp_lib_path $WORK_DIR_PREFIX/release/Base.so \
-	  --input_path /content/drive/My\ Drive/DBpedia/$n/$i/ --output_path $WORK_DIR_PREFIX/res_spark --cpp_lib_path $WORK_DIR_PREFIX/release/Base.so \
-    --embedding_dimension $2 --model $3 --mode evaluation | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
-	else
 	  echo "Evaluation with test"
 	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 $5 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
-	fi
 
 done
 
