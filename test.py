@@ -44,6 +44,7 @@ def get_ckpt(p):
         ckpt = ckpt[len(ckpt) - 1]
     return ckpt
 
+index_rel=[]
 if target_rel != None:
     with open(os.path.join(dataset_path,'relation2id.txt')) as f:
         f.readline()
