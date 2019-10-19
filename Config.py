@@ -568,7 +568,8 @@ class Config(object):
         plt.legend(loc="lower right")
         if not fig_name == None or fig_name == '':
             plt.savefig(fig_name)
-        plt.show()
+            plt.show(fig_name)
+        else: plt.show()
 
 
     def predict_head_entity(self, t, r, k):
