@@ -11,7 +11,6 @@ Once learned the embedding model, this script could be used to:
     sys.argv[3]; path to OpenKEonSpark/release/Base.so
     sys.argv[4]: embedding dimensionality
     sys.argv[5]: model to use (transe/transh/transr/transd)
-    sys.argv[6] (optional): target relation index (if you want to plot ROC curve)
 """
 
 from Config import Config
@@ -25,14 +24,12 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES']='-1'
 
 for arg in sys.argv: print(arg, type(arg))
-target_rel = None
 
 dataset_path = sys.argv[1]
 model_path = sys.argv[2]
 cpp_path = sys.argv[3]
 dim = sys.argv[4]
 model = sys.argv[5]
-if (len(sys.argv) >= 7): target_rel = sys.argv[6]
 
 
 
@@ -47,7 +44,7 @@ def get_ckpt(p):
 index_rel=[]
 
 rel_map={}
-with open((os.path.join(model_path,'relation2id.txt')) as f_rel:
+with open((os.path.join(model_path,'relation2id.txt'))) as f_rel:
     f_rel.readline()
     for line in f_rel:
         line_splitted=line.split("\t")
@@ -55,7 +52,7 @@ with open((os.path.join(model_path,'relation2id.txt')) as f_rel:
                     
     
 index_rel=[]
-with open((os.path.join(model_path,'test2id.txt')) as f:
+with open((os.path.join(model_path,'test2id.txt'))) as f:
     f.readline()
     for line in f:
         index=line.split(" ")[2].strip("\n")
@@ -86,11 +83,8 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 con.test()
 
-
-
-if target_rel != None:
-    for relation,index in rel_index:
-      print("Plotting ROC Curve for "+relation+"...")
-      print("Index: "+str(index))
-      print("Path name: "+str((os.path.join(model_path,'plot_'+str(relation)+'.png'))))
-      con.plot_roc(rel_index=int(index), fig_name=(os.path.join(model_path,'plot_'+str(relation)+'.png')))
+for relation,index in rel_index:
+  print("Plotting ROC Curve for "+relation+"...")
+  print("Index: "+str(index))
+  print("Path name: "+str((os.path.join(model_path,'plot_'+str(relation)+'.png'))))
+  con.plot_roc(rel_index=int(index), fig_name=(os.path.join(model_path,'plot_'+str(relation)+'.png')))
