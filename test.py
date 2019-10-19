@@ -51,7 +51,7 @@ if target_rel != None:
             line_splitted=line.split("\t")
             for rel in target_rel:
                 if(rel in (line_splitted[0])):
-                    index_rel.append([line_splitted[0],int(line_splitted[1].split("\n")[0]]))
+                    index_rel.append([line_splitted[0],int(line_splitted[1].split("\n")[0])])
 
 ckpt = get_ckpt(model_path)
 con = Config(cpp_lib_path=cpp_path)
