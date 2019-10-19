@@ -25,14 +25,14 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES']='-1'
 
 for arg in sys.argv: print(arg, type(arg))
-target_rel_index = None
+target_rel = None
 
 dataset_path = sys.argv[1]
 model_path = sys.argv[2]
 cpp_path = sys.argv[3]
 dim = sys.argv[4]
 model = sys.argv[5]
-if (len(sys.argv) >= 7): target_rel_index = sys.argv[6]
+if (len(sys.argv) >= 7): target_rel = sys.argv[6]
 
 
 
@@ -44,14 +44,14 @@ def get_ckpt(p):
         ckpt = ckpt[len(ckpt) - 1]
     return ckpt
 
-if target_rel_index != None:
+if target_rel != None:
     with open(os.path.join(dataset_path,'relation2id.txt')) as f:
         f.readline()
         for line in f:
             line_splitted=line.split("\t")
-            print(line_splitted[1].split("\n")[0])
-            if(int(line_splitted[1].split("\n")[0]) in target_rel_index):
-                index_rel.append([line_splitted[0],line_splitted[1].split("\n")[0]])
+            for rel in target_rel:
+                if(rel in (line_splitted[0])):
+                    index_rel.append([line_splitted[0],int(line_splitted[1].split("\n")[0]]))
 
 ckpt = get_ckpt(model_path)
 con = Config(cpp_lib_path=cpp_path)
@@ -69,7 +69,7 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 con.test()
 
-if target_rel_index != None:
+if target_rel != None:
     for relation,index in index_rel:
-      print("Plotting ROC Curve for "+index)
+      print("Plotting ROC Curve for "+relation+"...")
       con.plot_roc(rel_index=int(index), fig_name=(os.path.join(model_path,'plot_'+str(relation)+'.png')))
