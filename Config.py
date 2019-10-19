@@ -566,10 +566,9 @@ class Config(object):
         plt.ylabel('True Positive Rate (TPR)')
         plt.title('ROC Curve')
         plt.legend(loc="lower right")
-        if fig_name == None or fig_name == '':
-            plt.show()
-        else:
+        if not fig_name == None or fig_name == '':
             plt.savefig(fig_name)
+        plt.show()
 
 
     def predict_head_entity(self, t, r, k):
