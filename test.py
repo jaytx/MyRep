@@ -45,6 +45,7 @@ def get_ckpt(p):
     return ckpt
 
 index_rel=[]
+print("PATH REL: "+os.path.join(dataset_path,'relation2id.txt'))
 if target_rel != None:
     with open(os.path.join(dataset_path,'relation2id.txt')) as f:
         f.readline()
