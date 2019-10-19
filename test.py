@@ -44,6 +44,14 @@ def get_ckpt(p):
         ckpt = ckpt[len(ckpt) - 1]
     return ckpt
 
+if target_rel_index != None:
+    with open(os.path.join(dataset_path,'relation2id.txt')) as f:
+        f.readline()
+        for line in f:
+            line_splitted=line.split("\t")
+            print(line_splitted[1].split("\n")[0])
+            if(int(line_splitted[1].split("\n")[0]) in target_rel_index):
+                index_rel.append([line_splitted[0],line_splitted[1].split("\n")[0]])
 
 ckpt = get_ckpt(model_path)
 con = Config(cpp_lib_path=cpp_path)
@@ -57,9 +65,11 @@ elif model.lower() == "transh": con.set_model_and_session(TransH)
 elif model.lower() == "transr": con.set_model_and_session(TransR)
 else: con.set_model_and_session(TransD)
 
-target_rel_index = 2
 con.set_import_files(os.path.join(model_path, ckpt))
 
 con.test()
-print("PRE-PLOTTING ROC")
-if target_rel_index != None: con.plot_roc(rel_index=int(target_rel_index), fig_name=os.path.join(model_path,'plot.png'))
+
+if target_rel_index != None:
+    for relation,index in index_rel:
+      print("Plotting ROC Curve for "+index)
+      con.plot_roc(rel_index=int(index), fig_name=(os.path.join(model_path,'plot_'+str(relation)+'.png')))
