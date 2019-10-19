@@ -11,7 +11,6 @@ echo "Number of batches: $1"
 echo "Embedding dimensionality: $2"
 echo "Model to use: $3"
 echo "Learning rate: $4"
-echo "Target relation: $5"
 
 echo "====================================== Clearning res_spark directory ======================================"
 rm $WORK_DIR_PREFIX/res_spark/*
