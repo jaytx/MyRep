@@ -64,9 +64,6 @@ rel_index=[]
 for value in index_rel:
     rel_index.append([rel_map.get(value),value])
 
-print("TARGET RELATION AND INDEX:")
-print(rel_index)
-
 ckpt = get_ckpt(model_path)
 con = Config(cpp_lib_path=cpp_path)
 con.set_in_path(dataset_path)
