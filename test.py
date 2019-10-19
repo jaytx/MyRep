@@ -73,4 +73,6 @@ con.test()
 if target_rel != None:
     for relation,index in index_rel:
       print("Plotting ROC Curve for "+relation+"...")
+      print("Index: "+str(index))
+      print("Path name: "+str((os.path.join(model_path,'plot_'+str(relation)+'.png'))))
       con.plot_roc(rel_index=int(index), fig_name=(os.path.join(model_path,'plot_'+str(relation)+'.png')))
