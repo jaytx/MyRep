@@ -70,6 +70,10 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 con.test()
 
+print("INDEX_REL:")
+for value in index_rel:
+    print(value)
+
 if target_rel != None:
     for relation,index in index_rel:
       print("Plotting ROC Curve for "+relation+"...")
