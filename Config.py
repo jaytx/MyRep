@@ -564,7 +564,7 @@ class Config(object):
         plt.ylim([0.0, 1.05])
         plt.xlabel('False Positive Rate (FPR)')
         plt.ylabel('True Positive Rate (TPR)')
-        plt.title('ROC Curve of'+str(relation_name))
+        plt.title('ROC Curve of '+str(relation_name))
         plt.legend(loc="lower right")
         if not fig_name == None or fig_name == '':
             plt.savefig(fig_name)
