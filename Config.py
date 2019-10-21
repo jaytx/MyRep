@@ -516,7 +516,7 @@ class Config(object):
                 print("\nElapsed test time (seconds): {}".format(test_time_elapsed))
 
 
-    def plot_roc(self, rel_index, fig_name=None):
+    def plot_roc(self, rel_index,relation_name, fig_name=None):
         print("PLOTTING ROC")
         if self.importName != None:
             self.restore_tensorflow()
@@ -564,7 +564,7 @@ class Config(object):
         plt.ylim([0.0, 1.05])
         plt.xlabel('False Positive Rate (FPR)')
         plt.ylabel('True Positive Rate (TPR)')
-        plt.title('ROC Curve')
+        plt.title('ROC Curve of'+str(relation_name))
         plt.legend(loc="lower right")
         if not fig_name == None or fig_name == '':
             plt.savefig(fig_name)
