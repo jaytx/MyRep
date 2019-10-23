@@ -7,7 +7,7 @@
 
 
 echo "====================================== Parameters ======================================"
-echo "Number of batches: $1"
+echo "Dataset: $1"
 echo "Embedding dimensionality: $2"
 echo "Model to use: $3"
 echo "Learning rate: $4"
@@ -22,18 +22,6 @@ $SPARK_HOME/sbin/stop-master.sh
 
 echo "====================================== Starting Spark Master & slaves ======================================"
 $SPARK_HOME/sbin/start-master.sh; $SPARK_HOME/sbin/start-slave.sh -c $CORES_PER_WORKER -m $MEMORY_PER_WORKER spark://$(hostname):7077
-n=$1
-m=$((n-1))
-
-#iterate over batches
-for i in `seq 0 $m`
-do
-
-  if [ -f /content/drive/My\ Drive/DBpedia/$n/$i/res.txt ]; then
-    echo "Batch $i already done; Skipping batch $i"
-	  continue
-  fi
-
 
 	echo "====================================== Starting Training for batch $i ======================================"
 	$SPARK_HOME/bin/spark-submit --master spark://$(hostname):7077 \
@@ -47,12 +35,12 @@ do
     --alpha $4 --optimizer SGD --train_times 50 --ent_neg_rate 1 --embedding_dimension $2 --margin 1.0 --model $3
 
 
-	echo "====================================== Copying model for batch $i ======================================"
-	cp $WORK_DIR_PREFIX/res_spark/* /content/drive/My\ Drive/DBpedia/$n/$i/model/
+	echo "====================================== Copying model ======================================"
+	cp $WORK_DIR_PREFIX/res_spark/* /content/drive/My\ Drive/DBpedia/$1/0/model/
 
 	
 	echo "====================================== Start Triple Classification Evaluation for batch $i ======================================"
-	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
+	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$1/0/ /content/drive/My\ Drive/DBpedia/$1/0/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$1/0/res.txt
 
 done
 
