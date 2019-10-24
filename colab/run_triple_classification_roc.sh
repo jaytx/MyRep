@@ -7,7 +7,7 @@
 
 
 echo "====================================== Parameters ======================================"
-echo "Dataset: $1"
+echo "Number of batches: $1"
 echo "Embedding dimensionality: $2"
 echo "Model to use: $3"
 echo "Learning rate: $4"
@@ -22,6 +22,8 @@ $SPARK_HOME/sbin/stop-master.sh
 
 echo "====================================== Starting Spark Master & slaves ======================================"
 $SPARK_HOME/sbin/start-master.sh; $SPARK_HOME/sbin/start-slave.sh -c $CORES_PER_WORKER -m $MEMORY_PER_WORKER spark://$(hostname):7077
+n=$1
+m=$((n-1))
 
 	echo "====================================== Starting Training for batch $i ======================================"
 	$SPARK_HOME/bin/spark-submit --master spark://$(hostname):7077 \
@@ -36,11 +38,11 @@ $SPARK_HOME/sbin/start-master.sh; $SPARK_HOME/sbin/start-slave.sh -c $CORES_PER_
 
 
 	echo "====================================== Copying model ======================================"
-	cp $WORK_DIR_PREFIX/res_spark/* /content/drive/My\ Drive/DBpedia/$1/0/model/
+	cp $WORK_DIR_PREFIX/res_spark/* /content/drive/My\ Drive/DBpedia/$n/$i/model/
 
 	
 	echo "====================================== Start Triple Classification Evaluation for batch $i ======================================"
-	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$1/0/ /content/drive/My\ Drive/DBpedia/$1/0/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$1/0/res.txt
+	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
 
 done
 
