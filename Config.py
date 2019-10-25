@@ -38,15 +38,12 @@ class Config(object):
             self.lib.testHead.argtypes = [ctypes.c_int64, ctypes.c_void_p]
             self.lib.testHead.restype = ctypes.POINTER(ctypes.c_int64 * 8)
     
-            print("PRE CLASSIFICATION")
             #triple classification
             self.lib.getTestBatch.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p]
             self.lib.getValidBatch.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p]
             self.lib.getBestThreshold.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p]
             self.lib.test_triple_classification.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p]
             
-            print("POST CLASSIFICATION")
-
             #ROC
             self.lib.get_n_interval.argtypes = [ctypes.c_int64, ctypes.c_void_p, ctypes.c_void_p]
             self.lib.get_n_interval.restype = ctypes.c_int64
