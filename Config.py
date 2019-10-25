@@ -116,6 +116,8 @@ class Config(object):
         print("RELATION")
         print(self.lib.getRelationTotal())
         self.relThresh = np.zeros(self.lib.getRelationTotal(), dtype = np.float32)
+        print(self.relThresh)
+        print(self.relThresh.shape)
         print(self.relThresh.__array_interface__)
         self.relThresh_addr = self.relThresh.__array_interface__['data'][0]
 
