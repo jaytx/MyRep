@@ -337,6 +337,7 @@ void getBestThreshold(REAL *relThresh, REAL *score_pos, REAL *score_neg) {
             }
         }
         relThresh[r] = bestThresh;
+        printf("Best Threshold: %f\n",relThresh[r]);
     }
 }
 
