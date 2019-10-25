@@ -521,7 +521,7 @@ class Config(object):
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
 
                     print("THRESHOLD")
-                    arr_out = self.arr_from_ptr(self.relThresh_addr, '<f4', (120,))
+                    arr_out = self.arr_from_ptr(self.relThresh_addr, str("<f4"), (120,))
                     print(arr_out)
                     self.lib.test_triple_classification(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
                 
