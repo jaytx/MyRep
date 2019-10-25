@@ -499,7 +499,7 @@ class Config(object):
 
                 test_time_start = time.time()
 
-                """
+               
                 if self.test_triple_classification:
                     self.lib.getValidBatch(self.valid_pos_h_addr, self.valid_pos_t_addr, self.valid_pos_r_addr, self.valid_neg_h_addr, self.valid_neg_t_addr, self.valid_neg_r_addr)
                     res_pos = self.test_step(self.valid_pos_h, self.valid_pos_t, self.valid_pos_r)
@@ -507,7 +507,7 @@ class Config(object):
                     self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
 
                     self.lib.getTestBatch(self.test_pos_h_addr, self.test_pos_t_addr, self.test_pos_r_addr, self.test_neg_h_addr, self.test_neg_t_addr, self.test_neg_r_addr)
-
+                """
                     res_pos = self.test_step(self.test_pos_h, self.test_pos_t, self.test_pos_r)
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
 
