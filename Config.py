@@ -488,13 +488,6 @@ class Config(object):
         predict = self.sess.run(self.trainModel.predict, feed_dict)
         return predict
 
-    def arr_from_ptr(pointer, typestr, shape, copy=False,read_only_flag=False):
-        buff = {'data': (pointer, False), 'strides': None, 'descr': [('', '<f4')], 'typestr': '<f4', 'shape': (120,), 'version': 3}
-        class numpy_holder():
-            pass
-        holder = numpy_holder()
-        holder.__array_interface__ = buff
-        return np.array(holder, copy=copy)
 
     def test(self):
         '''
@@ -520,8 +513,6 @@ class Config(object):
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
 
                     print("THRESHOLD")
-                    arr_out = self.arr_from_ptr(self.relThresh_addr, str("<f4"), (120,))
-                    print(arr_out)
                     self.lib.test_triple_classification(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
                 
                 test_time_elapsed = time.time() - test_time_start
