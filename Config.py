@@ -512,7 +512,8 @@ class Config(object):
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
 
                     print("THRESHOLD")
-                    print(np.ndarray(buffer=(self.relThresh_addr,False),shape=(120,),dtype=np.float32))
+                    arr_out = arr_from_ptr(self.relThresh_addr, '<f8', (120,))
+                    print(arr_out)
                     self.lib.test_triple_classification(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
                 
                 test_time_elapsed = time.time() - test_time_start
