@@ -116,6 +116,7 @@ class Config(object):
         print("RELATION")
         print(self.lib.getRelationTotal())
         self.relThresh = np.zeros(self.lib.getRelationTotal(), dtype = np.float32)
+        print(self.relThresh.__array_interface__)
         self.relThresh_addr = self.relThresh.__array_interface__['data'][0]
 
         self.acc = np.zeros(1, dtype = np.float32)
@@ -522,7 +523,6 @@ class Config(object):
 
 
     def plot_roc(self, rel_index,relation_name, fig_name=None):
-        print("PLOTTING ROC")
         if self.importName != None:
             self.restore_tensorflow()
         self.init_triple_classification()
