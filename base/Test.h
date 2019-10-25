@@ -349,8 +349,8 @@ void test_triple_classification(REAL *relThresh, REAL *score_pos, REAL *score_ne
     REAL accuracy, precision, recall, fmeasure;
     INT TP = 0, TN = 0, FP = 0, FN = 0;
 
-    printf("Threshold is %f\n", relThresh);
     for (INT r = 0; r < relationTotal; r++) {
+        printf("Threshold is %f\n", relThresh[r]);
         if (validLef[r] == -1 || testLef[r] ==-1) continue;
         INT correct = 0, total = 0;
         for (INT i = testLef[r]; i <= testRig[r]; i++) {
