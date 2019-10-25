@@ -78,15 +78,6 @@ class Config(object):
         self.lib.importTestFiles()
         self.lib.importTypeFiles()
         self.lib.importOntologyFiles()
-        
-    def arr_from_ptr(pointer, typestr, shape, copy=False,read_only_flag=False):
-        buff = {'data': (pointer, read_only_flag),'typestr': typestr,'shape': shape}
-        
-        class numpy_holder():
-            pass
-        holder = numpy_holder()
-        holder.__array_interface__ = buff
-        return np.array(holder, copy=copy)
 
 
     def init_triple_classification(self):
@@ -496,6 +487,14 @@ class Config(object):
         predict = self.sess.run(self.trainModel.predict, feed_dict)
         return predict
 
+    def arr_from_ptr(pointer, typestr, shape, copy=False,read_only_flag=False):
+        buff = {'data': (pointer, read_only_flag),'typestr': typestr,'shape': shape}
+
+        class numpy_holder():
+            pass
+        holder = numpy_holder()
+        holder.__array_interface__ = buff
+        return np.array(holder, copy=copy)
 
     def test(self):
         '''
