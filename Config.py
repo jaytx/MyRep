@@ -489,8 +489,7 @@ class Config(object):
         return predict
 
     def arr_from_ptr(pointer, typestr, shape, copy=False,read_only_flag=False):
-        buff = {'data': (pointer, read_only_flag),'typestr': typestr,'shape': shape}
-
+        buff = {'data': (pointer, False), 'strides': None, 'descr': [('', '<f4')], 'typestr': '<f4', 'shape': (120,), 'version': 3}
         class numpy_holder():
             pass
         holder = numpy_holder()
