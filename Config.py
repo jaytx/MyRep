@@ -113,6 +113,8 @@ class Config(object):
         self.valid_neg_t_addr = self.valid_neg_t.__array_interface__['data'][0]
         self.valid_neg_r_addr = self.valid_neg_r.__array_interface__['data'][0]
 
+        print("RELATION")
+        print(self.lib.getRelationTotal())
         self.relThresh = np.zeros(self.lib.getRelationTotal(), dtype = np.float32)
         self.relThresh_addr = self.relThresh.__array_interface__['data'][0]
 
