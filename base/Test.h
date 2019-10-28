@@ -349,11 +349,11 @@ void test_triple_classification_moriarty(REAL *relThresh, REAL *score_pos, REAL 
     REAL accuracy, precision, recall, fmeasure;
     INT TP = 0, TN = 0, FP = 0, FN = 0;
 
-    printf("prova %lf\n",testList[i].t)
     for (INT r = 0; r < relationTotal; r++) {
         if (validLef[r] == -1 || testLef[r] ==-1) continue;
         INT correct = 0, total = 0;
         for (INT i = testLef[r]; i <= testRig[r]; i++) {
+            printf("prova %lf\n",testList[i].t)
             if (score_pos[i] <= relThresh[r]){
                 correct++;
                 TP++;
