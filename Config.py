@@ -704,6 +704,7 @@ class Config(object):
             if res < self.relThresh[r]:               
                 print("triple (%d,%d,%d) is correct" % (h, t, r))
                 print(entity_map.get(t))
+                print(entity_map.get(t)=="malicious")
                 if(entity_map.get(t)=="malicious"):
                     TP+=1
                 else: TN+=1
