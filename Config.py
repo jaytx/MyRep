@@ -694,8 +694,8 @@ class Config(object):
                 else:
                     print("triple (%d,%d,%d) is wrong" % (h, t, r))
                     if(entity_map.get(t)=="malicious"):
-                        FN+=1
-                    else: FP+=1
+                        FP+=1
+                    else: Fn+=1
 
             self.lib.getValidBatch(self.valid_pos_h_addr, self.valid_pos_t_addr, self.valid_pos_r_addr, self.valid_neg_h_addr, self.valid_neg_t_addr, self.valid_neg_r_addr)
             res_pos = self.test_step(self.valid_pos_h, self.valid_pos_t, self.valid_pos_r)
@@ -709,6 +709,6 @@ class Config(object):
             else:
                 print("triple (%d,%d,%d) is wrong" % (h, t, r))
                 if(entity_map.get(t)=="malicious"):
-                    FN+=1
-                else: FP+=1
+                    Fp+=1
+                else: Fn+=1
         return TP,TN,FP,FN
