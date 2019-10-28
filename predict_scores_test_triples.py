@@ -47,6 +47,7 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 print("Testing triples...")
 test_triples=[]
+"""
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
@@ -77,3 +78,4 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
 for triple in test_triples:
     print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
     con.predict_triple(triple[0], triple[1], triple[2])  
+"""
