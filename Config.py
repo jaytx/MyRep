@@ -681,9 +681,6 @@ class Config(object):
             h=triple[0]
             r=triple[2]
             t=triple[1]
-            print(h)
-            print(r)
-            print(t)
             if self.importName != None:
                 self.restore_tensorflow()
             res = self.test_step(np.array([h]), np.array([t]), np.array([r]))
