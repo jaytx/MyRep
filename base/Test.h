@@ -344,51 +344,6 @@ REAL *testAcc;
 REAL aveAcc;
 extern "C"
 //EDIT
-void test_triple_classification_moriarty(REAL *relThresh, REAL *score_pos, REAL *score_neg, REAL *acc_addr) {
-    testAcc = (REAL *)calloc(relationTotal, sizeof(REAL));
-    REAL accuracy, precision, recall, fmeasure;
-    INT TP = 0, TN = 0, FP = 0, FN = 0;
-
-    for (INT r = 0; r < relationTotal; r++) {
-        if (validLef[r] == -1 || testLef[r] ==-1) continue;
-        INT correct = 0, total = 0;
-        for (INT i = testLef[r]; i <= testRig[r]; i++) {
-            printf("prova %ld\n",testList[i].t);
-            if (score_pos[i] <= relThresh[r]){
-                correct++;
-                TP++;
-            }
-            else{
-                FN++;
-            }
-
-            if (score_neg[i] > relThresh[r]){
-                correct++;
-                TN++;
-            }
-            else{
-                FP++;
-            }
-            total += 2;
-        }
-        testAcc[r] = 1.0 * correct / total;
-    }
-
-    accuracy = 1.0 * (TP + TN) / (TP + TN + FP + FN);
-    precision = 1.0 * TP / (TP + FP);
-    recall = 1.0 * TP / (TP + FN);
-    fmeasure = (2 * precision * recall) / (precision + recall);
-
-    printf("triple classification accuracy is %lf\n", accuracy);
-    printf("triple classification precision is %lf\n", precision);
-    printf("triple classification recall is %lf\n", recall);
-    printf("triple classification f-measure is %lf\n", fmeasure);
-
-    acc_addr[0] = 1.0 * (TP + TN) / (TP + TN + FP + FN);
-}
-
-extern "C"
-//EDIT
 void test_triple_classification(REAL *relThresh, REAL *score_pos, REAL *score_neg, REAL *acc_addr) {
     testAcc = (REAL *)calloc(relationTotal, sizeof(REAL));
     REAL accuracy, precision, recall, fmeasure;
