@@ -59,7 +59,7 @@ with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
     f_entity.readline()
     for line in f_entity:
         entity=line.split("\t")
-        entity_map.update({int(entity[1].split("\n")[0]) : entity[0]})
+        entity_map.update({int(entity[1].split("\n")[0]) : entity[0].split("""")[1]})
         
 rel_map={}
 with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
@@ -75,7 +75,6 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
         test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
-print("Testing Triples...")
 TP,TN,FP,FN=con.predict_triples(test_triples,entity_map)  
 print("True Positive: "+str(TP))
 print("True Negative: "+str(TN))
