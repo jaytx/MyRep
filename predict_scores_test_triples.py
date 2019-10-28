@@ -52,6 +52,19 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
     for line in f:
         triple=line.split(" ")
         test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
+        
+entity_map={}
+with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
+    f_entity.readline()
+    for line in f_entity:
+        entity=line.split(" ")
+        entity_map.update({int(entity[1]) : entity[0]})
+
+with open (os.path.join(dataset_path,'test2id.txt')) as f:
+    f.readline()
+    for line in f:
+        triple=line.split(" ")
+        test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 for triple in test_triples:
     print(triple)
