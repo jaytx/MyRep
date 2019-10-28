@@ -674,6 +674,9 @@ class Config(object):
             h=triple[0]
             r=triple[2]
             t=triple[1]
+            print(h)
+            print(r)
+            print(t)
             self.init_triple_classification()
             if self.importName != None:
                 self.restore_tensorflow()
