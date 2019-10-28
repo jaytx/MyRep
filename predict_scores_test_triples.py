@@ -49,9 +49,9 @@ print("Testing triples...")
 test_triples=[]
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
-    for line in f
-    triple=line.split(" ")
-    test_triples.append(triple[0],triple[2],triple[1])
+    for line in f:
+        triple=line.split(" ")
+        test_triples.append(triple[0],triple[2],triple[1])
 
 for triple in test_triples:
     con.predict_triple(triple[0], triple[1], triple[2])  
