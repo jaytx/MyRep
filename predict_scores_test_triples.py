@@ -10,6 +10,7 @@
 from Config import Config  
 from TransE import TransE  
 import sys
+import os
 
 def get_ckpt(p):
     ckpt = None
