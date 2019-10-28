@@ -59,6 +59,13 @@ with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
     for line in f_entity:
         entity=line.split(" ")
         entity_map.update({int(entity[1]) : entity[0]})
+        
+rel_map={}
+with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
+    f_rel.readline()
+    for line in f_rel:
+        line_splitted=line.split("\t")
+        rel_map.update({int(line_splitted[1].split("\n")[0]) : line_splitted[0]})
 
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
@@ -67,5 +74,5 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
         test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 for triple in test_triples:
-    print(triple)
+    print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
     con.predict_triple(triple[0], triple[1], triple[2])  
