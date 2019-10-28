@@ -671,6 +671,8 @@ class Config(object):
             triples (array): array of triples to test
             thresh (fload): threshold for the triple
         '''
+        self.init_triple_classification()
+
         TP = 0
         TN = 0
         FP = 0
@@ -682,7 +684,6 @@ class Config(object):
             print(h)
             print(r)
             print(t)
-            self.init_triple_classification()
             if self.importName != None:
                 self.restore_tensorflow()
             res = self.test_step(np.array([h]), np.array([t]), np.array([r]))
