@@ -670,7 +670,10 @@ class Config(object):
             triples (array): array of triples to test
             thresh (fload): threshold for the triple
         '''
-        TP = 0, TN = 0, FP = 0, FN = 0
+        TP = 0
+        TN = 0
+        FP = 0
+        FN = 0
         for triple in triples: 
             h=triple[0]
             r=triple[2]
