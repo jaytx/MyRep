@@ -51,7 +51,7 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        test_triples.append([int(triple[0]),int(triple[2]),int(triple[1])])
+        test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 for triple in test_triples:
     print(triple)
