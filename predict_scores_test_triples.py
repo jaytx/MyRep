@@ -84,3 +84,9 @@ print("False Positive: "+str(FP))
 print("False Negative: "+str(FN))
 print("FPR: "+str(FP/(FP+TN)))
 print("TPR: "+str(TP/(TP+FN)))
+print("Accuracy: "+ str((1.0 * (TP + TN) / (TP + TN + FP + FN))))
+print("Precision: "+ str((1.0 * TP / (TP + FP))))
+print("Recall: " str((1.0 * TP / (TP + FN))))
+print("Fmeasure: "+str((2 * precision * recall) / (precision + recall)))
+
+
