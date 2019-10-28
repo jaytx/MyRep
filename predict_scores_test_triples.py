@@ -82,5 +82,3 @@ print("False Positive: "+str(FP))
 print("False Negative: "+str(FN))
 print("FPR: "+str(FP/(FP+TN)))
 print("TPR: "+str(TP/(TP+FN)))
-
-
