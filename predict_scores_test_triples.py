@@ -90,7 +90,7 @@ recall = 1.0 * TP / (TP + FN)
 fmeasure = (2 * precision * recall) / (precision + recall)
 print("Accuracy: "+ str(accuracy))
 print("Precision: "+ str(precision))
-print("Recall: " str(recall))
+print("Recall: " +str(recall))
 print("Fmeasure: "+str(fmeasure))
 
 
