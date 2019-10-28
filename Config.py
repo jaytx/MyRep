@@ -663,13 +663,14 @@ class Config(object):
         else:
             print("triple (%d,%d,%d) is wrong" % (h, t, r))
             
-    def predict_triples(self, triples, thresh = None):
+    def predict_triples(self, triples,entity_map, thresh = None):
         r'''This method tells you whether the given triple (h, t, r) is correct of wrong
 
         Args:
             triples (array): array of triples to test
             thresh (fload): threshold for the triple
         '''
+        TP = 0, TN = 0, FP = 0, FN = 0
         for triple in triples: 
             h=triple[0]
             r=triple[2]
@@ -684,14 +685,27 @@ class Config(object):
             if thresh != None:             
                 if res < thresh:
                     print("triple (%d,%d,%d) is correct" % (h, t, r))
+                    if(entity_map.get(t)=="malicious"):
+                        TP++
+                    else: TN++
                 else:
                     print("triple (%d,%d,%d) is wrong" % (h, t, r))
+                    if(entity_map.get(t)=="malicious"):
+                        FN++
+                    else: FP++
+
             self.lib.getValidBatch(self.valid_pos_h_addr, self.valid_pos_t_addr, self.valid_pos_r_addr, self.valid_neg_h_addr, self.valid_neg_t_addr, self.valid_neg_r_addr)
             res_pos = self.test_step(self.valid_pos_h, self.valid_pos_t, self.valid_pos_r)
             res_neg = self.test_step(self.valid_neg_h, self.valid_neg_t, self.valid_neg_r)
             self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
             if res < self.relThresh[r]:               
                 print("triple (%d,%d,%d) is correct" % (h, t, r))
+                if(entity_map.get(t)=="malicious"):
+                    TP++
+                else: TN++
             else:
                 print("triple (%d,%d,%d) is wrong" % (h, t, r))
-        return
+                if(entity_map.get(t)=="malicious"):
+                    FN++
+                else: FP++
+        return TP,TN,FP,FN
