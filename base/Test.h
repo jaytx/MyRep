@@ -400,6 +400,7 @@ void test_triple_classification_moriarty(REAL *relThresh, REAL *tail_addr, REAL 
         if (validLef[r] == -1 || testLef[r] ==-1) continue;
         INT correct = 0, total = 0;
         for (INT i = testLef[r]; i <= testRig[r]; i++) {
+            printf("This is %lf\n", tail_addr[i])
             if (score_pos[i] <= relThresh[r]){
                 correct++;
                 TP++;
