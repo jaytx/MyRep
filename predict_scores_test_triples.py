@@ -57,7 +57,7 @@ entity_map={}
 with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
     f_entity.readline()
     for line in f_entity:
-        entity=line.split(" ")
+        entity=line.split("\t")
         print(entity)
         entity_map.update({int(entity[1]) : entity[0]})
         
