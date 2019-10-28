@@ -691,8 +691,7 @@ class Config(object):
             res_neg = self.test_step(self.valid_neg_h, self.valid_neg_t, self.valid_neg_r)
             self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
             if res < self.relThresh[r]:               
-                if res < thresh:
-                    print("triple (%d,%d,%d) is correct" % (h, t, r))
-                else:
-                    print("triple (%d,%d,%d) is wrong" % (h, t, r))
+                print("triple (%d,%d,%d) is correct" % (h, t, r))
+            else:
+                print("triple (%d,%d,%d) is wrong" % (h, t, r))
         return
