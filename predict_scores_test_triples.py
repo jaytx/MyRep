@@ -45,5 +45,13 @@ else: con.set_model_and_session(TransD)
     
 con.set_import_files(os.path.join(model_path, ckpt))
 
-'''perform your operations'''   
-con.predict_triple(0, 2, 1)  
+print("Testing triples...")
+test_triples=[]
+with open (os.path.join(dataset_path,'test2id.txt')) as f:
+    f.readline()
+    for line in f
+    triple=line.split(" ")
+    test_triples.append(triple[0],triple[2],triple[1])
+
+for triple in test_triples:
+    con.predict_triple(triple[0], triple[1], triple[2])  
