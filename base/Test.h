@@ -353,8 +353,8 @@ void test_triple_classification(REAL *relThresh, REAL *score_pos, REAL *score_ne
         if (validLef[r] == -1 || testLef[r] ==-1) continue;
         INT correct = 0, total = 0;
         for (INT i = testLef[r]; i <= testRig[r]; i++) {
-            printf("prova %ld\n",testList[i].t);
             if (score_pos[i] <= relThresh[r]){
+                printf("TP %ld\n",testList[i].t);
                 correct++;
                 TP++;
             }
@@ -363,6 +363,7 @@ void test_triple_classification(REAL *relThresh, REAL *score_pos, REAL *score_ne
             }
 
             if (score_neg[i] > relThresh[r]){
+                printf("TN %ld\n",testList[i].t);
                 correct++;
                 TN++;
             }
