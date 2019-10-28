@@ -514,7 +514,7 @@ class Config(object):
 
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
                     print("pre class")
-                    self.lib.test_triple_classification_moriarty(self.relThresh_addr,test_tail_triples.__array_interface__['data'][0], res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
+                    self.lib.test_triple_classification_moriarty(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
                 
                     #self.lib.test_triple_classification(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
                 test_time_elapsed = time.time() - test_time_start
