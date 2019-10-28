@@ -703,8 +703,8 @@ class Config(object):
             self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
             if res < self.relThresh[r]:               
                 print("triple (%d,%d,%d) is correct" % (h, t, r))
-                print(entity_map.get(t))
-                print(entity_map.get(t)=="malicious")
+                print(str(entity_map.get(t).lower()))
+                print(str(entity_map.get(t).lower())=="malicious")
                 if(entity_map.get(t)=="malicious"):
                     TP+=1
                 else: TN+=1
