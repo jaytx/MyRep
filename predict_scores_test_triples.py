@@ -11,6 +11,14 @@ from Config import Config
 from TransE import TransE  
 import sys
 
+def get_ckpt(p):
+    ckpt = None
+    with open(os.path.join(p,"checkpoint"), 'r') as f:
+        first_line = f.readline()
+        ckpt = first_line.split(':')[1].strip().replace('"', '').split('/')
+        ckpt = ckpt[len(ckpt) - 1]
+    return ckpt
+
 for arg in sys.argv: print(arg, type(arg))
 
 dataset_path = sys.argv[1]
