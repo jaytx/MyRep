@@ -687,6 +687,7 @@ class Config(object):
             if thresh != None:             
                 if res < thresh:
                     print("triple (%d,%d,%d) is correct" % (h, t, r))
+                    print(entity_map.get(t))
                     if(entity_map.get(t)=="malicious"):
                         TP+=1
                     else: TN+=1
