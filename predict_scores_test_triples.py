@@ -26,4 +26,4 @@ con.set_model_and_session(model)
 con.set_import_files(model_path)
   
 '''perform your operations'''   
-con.predict_triple(0, 1928, 1)  
+con.predict_triple(0, 2, 1)  
