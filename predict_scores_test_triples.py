@@ -7,8 +7,11 @@
     sys.argv[5]: model to use (transe/transh/transr/transd)
 """
 
-from Config import Config  
-from TransE import TransE  
+from Config import Config
+from TransE import TransE
+from TransH import TransH
+from TransR import TransR
+from TransD import TransD  
 import sys
 import os
 
