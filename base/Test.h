@@ -388,8 +388,6 @@ void test_triple_classification(REAL *relThresh, REAL *score_pos, REAL *score_ne
     acc_addr[0] = 1.0 * (TP + TN) / (TP + TN + FP + FN);
 }
 
-REAL *testAcc;
-REAL aveAcc;
 extern "C"
 //EDIT
 void test_triple_classification_moriarty(REAL *relThresh, REAL *tail_addr, REAL *score_pos, REAL *score_neg, REAL *acc_addr) {
