@@ -692,4 +692,4 @@ class Config(object):
                     print("triple (%d,%d,%d) is correct" % (h, t, r))
                 else:
                     print("triple (%d,%d,%d) is wrong" % (h, t, r))
-         return
+        return
