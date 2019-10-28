@@ -9,6 +9,7 @@
 
 from Config import Config  
 from TransE import TransE  
+import sys
 
 for arg in sys.argv: print(arg, type(arg))
 
