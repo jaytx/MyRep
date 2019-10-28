@@ -353,7 +353,7 @@ void test_triple_classification_moriarty(REAL *relThresh, REAL *score_pos, REAL 
         if (validLef[r] == -1 || testLef[r] ==-1) continue;
         INT correct = 0, total = 0;
         for (INT i = testLef[r]; i <= testRig[r]; i++) {
-            printf("prova %ld\n",testList[i].t)
+            printf("prova %ld\n",testList[i].t);
             if (score_pos[i] <= relThresh[r]){
                 correct++;
                 TP++;
