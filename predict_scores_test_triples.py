@@ -25,6 +25,7 @@ con.set_in_path(dataset_path)
 con.set_test_triple_classification(True)
 con.set_dimension(int(dim))
 con.init()
-  
+con.set_import_files(os.path.join(model_path, ckpt))
+
 '''perform your operations'''   
 con.predict_triple(0, 2, 1)  
