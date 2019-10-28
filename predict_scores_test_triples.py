@@ -19,12 +19,12 @@ cpp_path = sys.argv[3]
 dim = sys.argv[4]
 model = sys.argv[5]
   
-con = Config(cpp_lib_path=cpp_path)  
-con.set_in_path(dataset_path)   
-con.set_dimension(dim)   #embedding dimension
-con.init()  
-con.set_model_and_session(model)
-con.set_import_files(model_path)
+ckpt = get_ckpt(model_path)
+con = Config(cpp_lib_path=cpp_path)
+con.set_in_path(dataset_path)
+con.set_test_triple_classification(True)
+con.set_dimension(int(dim))
+con.init()
   
 '''perform your operations'''   
 con.predict_triple(0, 2, 1)  
