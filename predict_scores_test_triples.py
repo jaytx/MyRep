@@ -25,6 +25,12 @@ con.set_in_path(dataset_path)
 con.set_test_triple_classification(True)
 con.set_dimension(int(dim))
 con.init()
+
+if model.lower() == "transe": con.set_model_and_session(TransE)
+elif model.lower() == "transh": con.set_model_and_session(TransH)
+elif model.lower() == "transr": con.set_model_and_session(TransR)
+else: con.set_model_and_session(TransD)
+    
 con.set_import_files(os.path.join(model_path, ckpt))
 
 '''perform your operations'''   
