@@ -59,6 +59,7 @@ with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
     f_entity.readline()
     for line in f_entity:
         entity=line.split("\t")
+        print(entity[0].split('"'))
         entity_map.update({int(entity[1].split("\n")[0]) : entity[0].split('"')[1]})
         
 rel_map={}
