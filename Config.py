@@ -510,8 +510,8 @@ class Config(object):
                     self.lib.getTestBatch(self.test_pos_h_addr, self.test_pos_t_addr, self.test_pos_r_addr, self.test_neg_h_addr, self.test_neg_t_addr, self.test_neg_r_addr)
                 
                     res_pos = self.test_step(self.test_pos_h, self.test_pos_t, self.test_pos_r)
-                    test_triples=[self.test_pos_h,self.test_pos_t,self.test_pos_r]
-                    print(res_pos)
+                    test_tail_triples=self.test_pos_r
+                    print(test_tail_triples.__array_interface__['data'][0])
 
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
                     self.lib.test_triple_classification(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
