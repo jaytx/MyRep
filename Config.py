@@ -479,12 +479,7 @@ class Config(object):
         '''
         Perform a single test step
         '''
-        print("H")
-        print(test_h)
-        print("T")
-        print(test_t)
-        print("R")
-        print(test_r)
+
         feed_dict = {
             self.trainModel.predict_h: test_h,
             self.trainModel.predict_t: test_t,
@@ -515,12 +510,9 @@ class Config(object):
                     self.lib.getTestBatch(self.test_pos_h_addr, self.test_pos_t_addr, self.test_pos_r_addr, self.test_neg_h_addr, self.test_neg_t_addr, self.test_neg_r_addr)
                 
                     res_pos = self.test_step(self.test_pos_h, self.test_pos_t, self.test_pos_r)
-                    print("POS")
-                    print(len(res_pos))
-                    print("POS H")
-                    print(len(self.test_pos_h))
-                    print(len(self.test_pos_t))
-                    print(len(self.test_pos_r))
+                    test_triples=[self.test_pos_h,self.test_pos_t,self.test_pos_r]
+                    print(test_triples.__array_interface__['data'][0])
+
                     res_neg = self.test_step(self.test_neg_h, self.test_neg_t, self.test_neg_r)
                     self.lib.test_triple_classification(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0], self.acc_addr)
                 
