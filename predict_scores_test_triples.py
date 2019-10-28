@@ -78,4 +78,10 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
 print("Testing Triples...")
 TP,TN,FP,FN=con.predict_triples(test_triples,entity_map)  
 print("True Positive: "+str(TP))
+print("True Negative: "+str(TN))
+print("False Positive: "+str(FP))
+print("False Negative: "+str(FN))
+print("FPR: "+str(FP/(FP+TN)))
+print("TPR: "+str(TP/(TP+FN)))
+
 
