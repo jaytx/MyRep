@@ -75,5 +75,5 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
         test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
-con.predict_triples(test_triples)  
+con.predict_triples(test_triples,entity_map)  
 
