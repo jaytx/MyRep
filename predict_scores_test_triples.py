@@ -51,7 +51,8 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        test_triples.append([triple[0],triple[2],triple[1]])
+        test_triples.append([int(triple[0]),int(triple[2]),int(triple[1])])
 
 for triple in test_triples:
+    print(triple)
     con.predict_triple(triple[0], triple[1], triple[2])  
