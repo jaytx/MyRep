@@ -75,8 +75,8 @@ do
 	cp $WORK_DIR_PREFIX/res_spark/* /content/drive/My\ Drive/DBpedia/$n/$i/model/
 
 	
-	echo "====================================== Start Triple Classification Evaluation for batch $i ======================================"
-	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
+	#echo "====================================== Start Triple Classification Evaluation for batch $i ======================================"
+	  #python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
 
 done
 
