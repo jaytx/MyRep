@@ -28,14 +28,6 @@ m=$((n-1))
 #iterate over batches
 for i in `seq 0 $m`
 do
-  #restore Triple Classification evaluation if evaluation checkpoints have been founded
-  if [ -f /content/drive/My\ Drive/DBpedia/$n/$i/model/thread0 ]; then
-  	echo "====================================== Start Triple Classification Evaluation for batch $i ======================================"
-	  python3 $WORK_DIR_PREFIX/test.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
-	
-	continue
-	
-  fi
   
   if [ -f /content/drive/My\ Drive/DBpedia/$n/$i/res.txt ]; then
     echo "Batch $i already done; Skipping batch $i"
