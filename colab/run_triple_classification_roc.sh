@@ -73,4 +73,4 @@ do
 done
 
 echo "====================================== Start Triple Classification Evaluation ======================================"
-python3 $WORK_DIR_PREFIX/predict_scores_test_triples.py /content/drive/My\ Drive/DBpedia/1/0/ /content/drive/My\ Drive/DBpedia/1/0/model/ release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/1/0/res.txt
+python3 $WORK_DIR_PREFIX/predict_scores_test_triples.py /content/drive/My\ Drive/DBpedia/$n/$m/ /content/drive/My\ Drive/DBpedia/$n/$m/model/ release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$m/res.txt
