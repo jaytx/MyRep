@@ -57,7 +57,7 @@ do
     --driver-library-path=$LIB_CUDA --conf spark.dynamicAllocation.enabled=false --conf spark.task.cpus=$CORES_PER_WORKER --executor-memory $MEMORY_PER_WORKER \
     --num-executors $SPARK_WORKER_INSTANCES \
 	$WORK_DIR_PREFIX/main_spark.py \
-    --cluster_size $SPARK_WORKER_INSTANCES --num_ps 1 --num_gpus 0 --cpp_lib_path $WORK_DIR_PREFIX/release/Base.so \
+    --cluster_size $SPARK_WORKER_INSTANCES --num_ps 1 --num_gpus -1 --cpp_lib_path $WORK_DIR_PREFIX/release/Base.so \
 	--input_path /content/drive/My\ Drive/DBpedia/$n/$i/ \
     --output_path $WORK_DIR_PREFIX/res_spark \
     --alpha $4 --optimizer SGD --train_times 50 --ent_neg_rate 1 --embedding_dimension $2 --margin 1.0 --model $3
