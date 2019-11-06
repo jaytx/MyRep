@@ -612,8 +612,6 @@ def main_fun(argv, ctx):
             if task_index != 0:
                 time.sleep(30)
 
-    tf.reset_default_graph()
-
 
 
 
