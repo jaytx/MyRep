@@ -18,8 +18,8 @@ def get_conf_to_update_model(output_path):
     '''
     con = Config(init_new_entities=True)
 
-    ckpt = None #output_path
-    with open(os.path.join("/content/drive/My Drive/DBpedia/4/0/model/", "checkpoint"), 'r') as f:
+    ckpt = None 
+    with open(os.path.join(output_path, "checkpoint"), 'r') as f:
         first_line = f.readline()
         ckpt = first_line.split(':')[1].strip().replace('"', '')
     print("Checkpoint file is: " + ckpt)
