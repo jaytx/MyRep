@@ -223,6 +223,7 @@ def main_fun(argv, ctx):
         if sys.argv.debug: print("Starting MonitoredTrainingSession...")
         sess = None
         if sys.argv.mode == 'train':
+            print("START TRAINING")
             sess = tf.train.MonitoredTrainingSession(master=server.target,
                                                is_chief=(task_index == 0),
                                                scaffold=scaffold,
