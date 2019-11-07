@@ -224,7 +224,7 @@ def main_fun(argv, ctx):
         sess = None
         if sys.argv.mode == 'train':
             print("START TRAINING")
-            sess = tf.train.MonitoredTrainingSession(master=server.target,
+            sess = tf.compat.v1.train.MonitoredTrainingSession(master=server.target,
                                                is_chief=(task_index == 0),
                                                scaffold=scaffold,
                                                config=config_monitored,
