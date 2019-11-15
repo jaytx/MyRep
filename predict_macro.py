@@ -54,7 +54,7 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        if(int(triple[1]) not in map_rel):
+        if(int(triple[2]) not in map_rel):
             map_rel.update({int(triple[1]) : index})
             index+=1
 
@@ -65,7 +65,7 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        test_triples[map_rel.get(int(triple[1]))][1].append([int(triple[0]),int(triple[1]),int(triple[2])])
+        test_triples[map_rel.get(int(triple[2]))][1].append([int(triple[0]),int(triple[1]),int(triple[2])])
         #test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
         
 entity_map={}
