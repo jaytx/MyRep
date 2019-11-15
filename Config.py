@@ -712,7 +712,7 @@ class Config(object):
                 else: FN+=1
         return TP,TN,FP,FN
     
-        def predict_triples(self, triples,entity_map, thresh = None):
+    def predict_triples(self, triples,entity_map, thresh = None):
         r'''This method tells you whether the given triple (h, t, r) is correct of wrong
         Args:
             triples (array): array of triples to test
