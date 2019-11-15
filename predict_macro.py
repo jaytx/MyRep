@@ -47,12 +47,26 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 print("Testing triples...")
 test_triples=[]
+map_rel={}
+index=0
 
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
+        if(int(triple[1]) not in map_rel):
+            map_rel.update({int(triple[1]) : index})
+            index+=1
+
+for rel in map_rel:
+    test_triples.insert(map_rel.get(rel),[rel,[]])
+
+with open (os.path.join(dataset_path,'test2id.txt')) as f:
+    f.readline()
+    for line in f:
+        triple=line.split(" ")
+        test_triples[map_rel.get(int(triple[1]))][1].append([int(triple[0]),int(triple[1]),int(triple[2])])
+        #test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
         
 entity_map={}
 with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
@@ -77,18 +91,20 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
         test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
-TP,TN,FP,FN=con.predict_triples(test_triples,entity_map)  
-print("True Positive: "+str(TP))
-print("True Negative: "+str(TN))
-print("False Positive: "+str(FP))
-print("False Negative: "+str(FN))
-print("FPR: "+str(FP/(FP+TN)))
-print("TPR: "+str(TP/(TP+FN)))
-accuracy = 1.0 * (TP + TN) / (TP + TN + FP + FN)
-precision = 1.0 * TP / (TP + FP)
-recall = 1.0 * TP / (TP + FN)
-fmeasure = (2 * precision * recall) / (precision + recall)
-print("Accuracy: "+ str(accuracy))
-print("Precision: "+ str(precision))
-print("Recall: " +str(recall))
-print("Fmeasure: "+str(fmeasure))
+for rel in map_rel:
+    print("Executing evaluation of relation "+rel+"...")
+    TP,TN,FP,FN=con.predict_triples_for_macro(rel,test_triples[map_rel.get(rel)][1],entity_map)  
+    print("True Positive: "+str(TP))
+    print("True Negative: "+str(TN))
+    print("False Positive: "+str(FP))
+    print("False Negative: "+str(FN))
+    print("FPR: "+str(FP/(FP+TN)))
+    print("TPR: "+str(TP/(TP+FN)))
+    accuracy = 1.0 * (TP + TN) / (TP + TN + FP + FN)
+    precision = 1.0 * TP / (TP + FP)
+    recall = 1.0 * TP / (TP + FN)
+    fmeasure = (2 * precision * recall) / (precision + recall)
+    print("Accuracy: "+ str(accuracy))
+    print("Precision: "+ str(precision))
+    print("Recall: " +str(recall))
+    print("Fmeasure: "+str(fmeasure))
