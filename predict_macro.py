@@ -58,15 +58,11 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
             map_tail.update({int(triple[1]) : index})
             index+=1
 
-for rel in map_tail:
-    test_triples.insert(map_tail.get(rel),[rel,[]])
-
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        test_triples[map_tail.get(int(triple[1]))][1].append([int(triple[0]),int(triple[1]),int(triple[2])])
-        #test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
+        test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
         
 entity_map={}
 with open (os.path.join(dataset_path,'entity2id.txt')) as f_entity:
@@ -93,7 +89,7 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
 for tail in map_tail:
     print("Executing evaluation of target "+str(tail)+"...")
-    TP,TN,FP,FN=con.predict_triples_for_macro(tail,test_triples[map_tail.get(tail)][1],entity_map)  
+    TP,TN,FP,FN=con.predict_triples_for_macro(tail,test_triples,entity_map)  
     print("True Positive: "+str(TP))
     print("True Negative: "+str(TN))
     print("False Positive: "+str(FP))
