@@ -664,9 +664,56 @@ class Config(object):
         else:
             print("triple (%d,%d,%d) is wrong" % (h, t, r))
             
-    def predict_triples(self, triples,entity_map, thresh = None):
+    def predict_triples_for_macro(self, target_rel,triples,entity_map, thresh = None):
         r'''This method tells you whether the given triple (h, t, r) is correct of wrong
 
+        Args:
+            triples (array): array of triples to test
+            thresh (fload): threshold for the triple
+        '''
+        self.init_triple_classification()
+
+        TP = 0
+        TN = 0
+        FP = 0
+        FN = 0
+        for triple in triples: 
+            h=triple[0]
+            r=triple[2]
+            t=triple[1]
+            if self.importName != None:
+                self.restore_tensorflow()
+            res = self.test_step(np.array([h]), np.array([t]), np.array([r]))
+            if thresh != None:             
+                if res < thresh:
+                    print("triple (%d,%d,%d) is correct" % (h, t, r))
+                    if(t==target_rel):
+                        TP+=1
+                    else: TN+=1
+                else:
+                    print("triple (%d,%d,%d) is wrong" % (h, t, r))
+                    if(t==target_rel):
+                        FP+=1
+                    else: FN+=1
+
+            self.lib.getValidBatch(self.valid_pos_h_addr, self.valid_pos_t_addr, self.valid_pos_r_addr, self.valid_neg_h_addr, self.valid_neg_t_addr, self.valid_neg_r_addr)
+            res_pos = self.test_step(self.valid_pos_h, self.valid_pos_t, self.valid_pos_r)
+            res_neg = self.test_step(self.valid_neg_h, self.valid_neg_t, self.valid_neg_r)
+            self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
+            if res < self.relThresh[r]:               
+                print("triple (%d,%d,%d) is correct" % (h, t, r))
+                if(t==target_rel):
+                    TP+=1
+                else: TN+=1
+            else:
+                print("triple (%d,%d,%d) is wrong" % (h, t, r))
+                if(t==target_rel):
+                    FP+=1
+                else: FN+=1
+        return TP,TN,FP,FN
+    
+        def predict_triples(self, triples,entity_map, thresh = None):
+        r'''This method tells you whether the given triple (h, t, r) is correct of wrong
         Args:
             triples (array): array of triples to test
             thresh (fload): threshold for the triple
