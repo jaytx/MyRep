@@ -68,8 +68,8 @@ do
 
 	
 	 echo "====================================== Start Triple Classification Evaluation for batch $i ======================================"
-	  python3 $WORK_DIR_PREFIX/predict_scores_test_triples.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
-  
+	  #python3 $WORK_DIR_PREFIX/predict_scores_test_triples.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
+	  python3 $WORK_DIR_PREFIX/predict_macro.py /content/drive/My\ Drive/DBpedia/$n/$i/ /content/drive/My\ Drive/DBpedia/$n/$i/model/ $WORK_DIR_PREFIX/release/Base.so $2 $3 | tee /content/drive/My\ Drive/DBpedia/$n/$i/res.txt
 done
 
 #echo "====================================== Start Triple Classification Evaluation ======================================"
