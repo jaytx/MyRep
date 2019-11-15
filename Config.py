@@ -664,7 +664,7 @@ class Config(object):
         else:
             print("triple (%d,%d,%d) is wrong" % (h, t, r))
             
-    def predict_triples_for_macro(self, target_rel,triples,entity_map, thresh = None):
+    def predict_triples_for_macro(self, target_tail,triples,entity_map, thresh = None):
         r'''This method tells you whether the given triple (h, t, r) is correct of wrong
 
         Args:
@@ -687,12 +687,12 @@ class Config(object):
             if thresh != None:             
                 if res < thresh:
                     print("triple (%d,%d,%d) is correct" % (h, t, r))
-                    if(t==target_rel):
+                    if(t==target_tail):
                         TP+=1
                     else: TN+=1
                 else:
                     print("triple (%d,%d,%d) is wrong" % (h, t, r))
-                    if(t==target_rel):
+                    if(t==target_tail):
                         FP+=1
                     else: FN+=1
 
@@ -702,12 +702,12 @@ class Config(object):
             self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
             if res < self.relThresh[r]:               
                 print("triple (%d,%d,%d) is correct" % (h, t, r))
-                if(t==target_rel):
+                if(t==target_tail):
                     TP+=1
                 else: TN+=1
             else:
                 print("triple (%d,%d,%d) is wrong" % (h, t, r))
-                if(t==target_rel):
+                if(t==target_tail):
                     FP+=1
                 else: FN+=1
         return TP,TN,FP,FN
