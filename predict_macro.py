@@ -92,7 +92,7 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
 for rel in map_rel:
-    print("Executing evaluation of relation "+rel+"...")
+    print("Executing evaluation of relation "+str(rel)+"...")
     TP,TN,FP,FN=con.predict_triples_for_macro(rel,test_triples[map_rel.get(rel)][1],entity_map)  
     print("True Positive: "+str(TP))
     print("True Negative: "+str(TN))
