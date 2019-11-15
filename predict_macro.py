@@ -80,11 +80,6 @@ with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
         line_splitted=line.split("\t")
         rel_map.update({int(line_splitted[1].split("\n")[0]) : line_splitted[0]})
 
-with open (os.path.join(dataset_path,'test2id.txt')) as f:
-    f.readline()
-    for line in f:
-        triple=line.split(" ")
-        test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
 for tail in map_tail:
