@@ -47,25 +47,25 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 print("Testing triples...")
 test_triples=[]
-map_rel={}
+map_tail={}
 index=0
 
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        if(int(triple[2]) not in map_rel):
-            map_rel.update({int(triple[1]) : index})
+        if(int(triple[1]) not in map_tail):
+            map_tail.update({int(triple[1]) : index})
             index+=1
 
-for rel in map_rel:
-    test_triples.insert(map_rel.get(rel),[rel,[]])
+for rel in map_tail:
+    test_triples.insert(map_tail.get(rel),[rel,[]])
 
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
     for line in f:
         triple=line.split(" ")
-        test_triples[map_rel.get(int(triple[2]))][1].append([int(triple[0]),int(triple[1]),int(triple[2])])
+        test_triples[map_tail.get(int(triple[1]))][1].append([int(triple[0]),int(triple[1]),int(triple[2])])
         #test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
         
 entity_map={}
@@ -91,9 +91,9 @@ with open (os.path.join(dataset_path,'test2id.txt')) as f:
         test_triples.append([int(triple[0]),int(triple[1]),int(triple[2])])
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
-for rel in map_rel:
-    print("Executing evaluation of relation "+str(rel)+"...")
-    TP,TN,FP,FN=con.predict_triples_for_macro(rel,test_triples[map_rel.get(rel)][1],entity_map)  
+for tail in map_tail:
+    print("Executing evaluation of target "+str(rel)+"...")
+    TP,TN,FP,FN=con.predict_triples_for_macro(rel,test_triples[map_tail.get(tail)][1],entity_map)  
     print("True Positive: "+str(TP))
     print("True Negative: "+str(TN))
     print("False Positive: "+str(FP))
