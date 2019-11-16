@@ -47,16 +47,6 @@ con.set_import_files(os.path.join(model_path, ckpt))
 
 print("Testing triples...")
 test_triples=[]
-map_tail={}
-index=0
-
-with open (os.path.join(dataset_path,'test2id.txt')) as f:
-    f.readline()
-    for line in f:
-        triple=line.split(" ")
-        if(int(triple[1]) not in map_tail):
-            map_tail.update({int(triple[1]) : index})
-            index+=1
 
 with open (os.path.join(dataset_path,'test2id.txt')) as f:
     f.readline()
@@ -82,20 +72,33 @@ with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
 
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
-for tail in map_tail:
-    print("Executing evaluation of target "+str(tail)+"...")
-    TP,TN,FP,FN=con.predict_triples_for_macro(tail,test_triples,entity_map)  
-    print("True Positive: "+str(TP))
-    print("True Negative: "+str(TN))
-    print("False Positive: "+str(FP))
-    print("False Negative: "+str(FN))
-    print("FPR: "+str(FP/(FP+TN)))
-    print("TPR: "+str(TP/(TP+FN)))
-    accuracy = 1.0 * (TP + TN) / (TP + TN + FP + FN)
-    precision = 1.0 * TP / (TP + FP)
-    recall = 1.0 * TP / (TP + FN)
-    fmeasure = (2 * precision * recall) / (precision + recall)
-    print("Accuracy: "+ str(accuracy))
-    print("Precision: "+ str(precision))
-    print("Recall: " +str(recall))
-    print("Fmeasure: "+str(fmeasure))
+TP_m,TN_m,FP_m,FN_m,TP_b,TN_b,FP_b,FN_b=con.predict_triples_for_macro(tail,test_triples,entity_map)  
+print("True Positive malicious: "+str(TP_m))
+print("True Negative malicious: "+str(TN_m))
+print("False Positive malicious: "+str(FP_m))
+print("False Negative malicious: "+str(FN_m))
+print("FPR malicious: "+str(FP_m/(FP_m+TN_m)))
+print("TPR malicious: "+str(TP_m/(TP_m+FN_m)))
+accuracy_m = 1.0 * (TP_m + TN_m) / (TP_m + TN_m + FP_m + FN_m)
+precision_m = 1.0 * TP_m / (TP_m + FP_m)
+recall_m = 1.0 * TP / (TP_m + FN_m)
+fmeasure_m = (2 * precision_m * recall_m) / (precision_m + recall_m)
+print("Accuracy malicious: "+ str(accuracy_m))
+print("Precision malicious: "+ str(precision_m))
+print("Recall malicious: " +str(recall_m))
+print("Fmeasure malicious: "+str(fmeasure_m))
+
+print("True Positive benign: "+str(TP_b))
+print("True Negative benign: "+str(TN_b))
+print("False Positive benign: "+str(FP_b))
+print("False Negative benign: "+str(FN_b))
+print("FPR benign: "+str(FP_b/(FP_b+TN_b)))
+print("TPR benign: "+str(TP_b/(TP_b+FN_b)))
+accuracy_b = 1.0 * (TP_b + TN_b) / (TP_b + TN_b + FP_b + FN_b)
+precision_b = 1.0 * TP_b / (TP_b + FP_b)
+recall_b = 1.0 * TP / (TP_b + FN_b)
+fmeasure_b = (2 * precision_b * recall_b) / (precision_b + recall_b)
+print("Accuracy benign: "+ str(accuracy_b))
+print("Precision benign: "+ str(precision_b))
+print("Recall benign: " +str(recall_b))
+print("Fmeasure benign: "+str(fmeasure_b))
