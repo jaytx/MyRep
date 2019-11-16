@@ -72,7 +72,7 @@ with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
 
 
 #print(str(entity_map.get(triple[0]))+ " "+str(rel_map.get(triple[2]))+ " " + str(entity_map.get(triple[1])))
-TP_m,TN_m,FP_m,FN_m,TP_b,TN_b,FP_b,FN_b=con.predict_triples_for_macro(tail,test_triples,entity_map)  
+TP_m,TN_m,FP_m,FN_m,TP_b,TN_b,FP_b,FN_b=con.predict_triples_for_macro(test_triples,entity_map)  
 print("True Positive malicious: "+str(TP_m))
 print("True Negative malicious: "+str(TN_m))
 print("False Positive malicious: "+str(FP_m))
