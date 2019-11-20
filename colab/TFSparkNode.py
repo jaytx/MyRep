@@ -285,7 +285,7 @@ def run(fn, tf_args, cluster_meta, tensorboard, log_dir, queues, background):
       os.environ['TF_CONFIG'] = tf_config
 
     # reserve GPU(s) again, just before launching TF process (in case situation has changed)
-    if tf.test.is_built_with_cuda():
+    if False:
       # compute my index relative to other nodes on the same host (for GPU allocation)
       my_addr = cluster_spec[job_name][task_index]
       my_host = my_addr.split(':')[0]
