@@ -75,9 +75,18 @@ with open((os.path.join(dataset_path,'relation2id.txt'))) as f_rel:
 TP_m,TN_m,FP_m,FN_m,TP_b,TN_b,FP_b,FN_b=con.predict_triples_for_macro(test_triples,entity_map)  
 print("=============Evaluation of malicious label=============")
 accuracy_m = 1.0 * (TP_m + TN_m) / (TP_m + TN_m + FP_m + FN_m)
-precision_m = 1.0 * TP_m / (TP_m + FP_m)
+
+if( TP_m + FP_m ==0):
+    precision_m=1
+else:
+    precision_m = 1.0 * TP_m / (TP_m + FP_m)
+    
 recall_m = 1.0 * TP_m / (TP_m + FN_m)
-fmeasure_m = (2 * precision_m * recall_m) / (precision_m + recall_m)
+
+if(precision_m + recall_m ==0): 
+    fmeasure_m=0
+else:  
+    fmeasure_m = (2 * precision_m * recall_m) / (precision_m + recall_m)
 print("True Positive malicious: "+str(TP_m))
 print("True Negative malicious: "+str(TN_m))
 print("False Positive malicious: "+str(FP_m))
@@ -91,9 +100,18 @@ print("Fmeasure malicious: "+str(fmeasure_m))
 
 print("=============Evaluation of benign label=============")
 accuracy_b = 1.0 * (TP_b + TN_b) / (TP_b + TN_b + FP_b + FN_b)
-precision_b = 1.0 * TP_b / (TP_b + FP_b)
+
+if( TP_b + FP_b ==0):
+    precision_b=1
+else:
+    precision_b = 1.0 * TP_b / (TP_b + FP_b)
+    
 recall_b = 1.0 * TP_b / (TP_b + FN_b)
-fmeasure_b = (2 * precision_b * recall_b) / (precision_b + recall_b)
+
+if(precision_b + recall_b ==0): 
+    fmeasure_b=0
+else:  
+    fmeasure_b = (2 * precision_b * recall_b) / (precision_b + recall_b)
 print("True Positive benign: "+str(TP_b))
 print("True Negative benign: "+str(TN_b))
 print("False Positive benign: "+str(FP_b))
