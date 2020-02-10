@@ -47,6 +47,5 @@ os.environ["WORK_DIR_PREFIX"] = "/content/OpenKEonSpark"
 os.environ["SPARK_HOME"] = "/content/spark-2.1.1-bin-hadoop2.7"
 
 #execute train-evaluate pipeline
-!bash $WORK_DIR_PREFIX/colab/run_triple_classification_roc.sh 1 64 "TransH" 0.00001
-#!bash $WORK_DIR_PREFIX/colab/triple_classification.sh 64 "TransD"
+!bash $WORK_DIR_PREFIX/colab/run_sherlock_classification.sh 1 64 "TransH" 0.00001
 
