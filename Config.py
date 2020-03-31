@@ -700,11 +700,11 @@ class Config(object):
                 else:
                     print("triple (%d,%d,%d) is wrong" % (h, t, r))
                     if(entity_map.get(t)=="malicious"):
-                        FP_m+=1
-                        FN_b+=1
-                    else: 
                         FN_m+=1
                         FP_b+=1
+                    else: 
+                        FP_m+=1
+                        FN_b+=1
 
             self.lib.getValidBatch(self.valid_pos_h_addr, self.valid_pos_t_addr, self.valid_pos_r_addr, self.valid_neg_h_addr, self.valid_neg_t_addr, self.valid_neg_r_addr)
             res_pos = self.test_step(self.valid_pos_h, self.valid_pos_t, self.valid_pos_r)
@@ -721,11 +721,11 @@ class Config(object):
             else:
                 print("triple (%d,%d,%d) is wrong" % (h, t, r))
                 if(entity_map.get(t)=="malicious"):
-                    FP_m+=1
-                    FN_b+=1
-                else: 
                     FN_m+=1
                     FP_b+=1
+                else: 
+                    FP_m+=1
+                    FN_b+=1
         return TP_m,TN_m,FP_m,FN_m,TP_b,TN_b,FP_b,FN_b
     
     def predict_triples(self, triples,entity_map, thresh = None):
