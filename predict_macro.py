@@ -30,7 +30,8 @@ model_path = sys.argv[2]
 cpp_path = sys.argv[3]
 dim = sys.argv[4]
 model = sys.argv[5]
-  
+
+print("ciao")
 ckpt = get_ckpt(model_path)
 con = Config(cpp_lib_path=cpp_path)
 con.set_in_path(dataset_path)
